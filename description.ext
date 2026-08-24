@@ -1,0 +1,12 @@
+class CfgDebriefing {
+    class success {
+        title = "Mission completed";
+        subtitle = "You killed the beast";
+        description = "";
+    };
+    class alpha12NotFound {
+        title = "Mission failed";
+        subtitle = "You did not recover Alpha 1-2 until dawn";
+        description = "";
+    };
+};
