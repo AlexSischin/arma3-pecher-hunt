@@ -1,0 +1,30 @@
+author = "Alexei Sischin";
+onLoadName = "Pecher massacre";
+onLoadMission = "Locate and rescue the missing Alpha 1-2 crew after reports of a massive unidentified biological threat. Eliminate the hostile creature, and exfiltrate.";
+loadScreen = "preview.jpg";
+overviewPicture = "preview.jpg";
+overviewText = "Alpha 1-1 is sent to Pecher to locate and rescue the missing Alpha 1-2 crew \
+after reports of a massive unidentified biological threat. \
+With no further contact and time running out, your squad must investigate the crash site, \
+eliminate the hostile creature, and exfiltrate. \
+Russian ammunition and an abandoned tactical nuclear launch vehicle may provide the firepower \
+needed to bring the threat down.";
+
+class Header {
+	gameType = Coop;
+    minPlayers =  2;
+    maxPlayers = 4;
+};
+
+class CfgDebriefing {
+    class success {
+        title = "Mission completed";
+        subtitle = "You killed the beast";
+        description = "";
+    };
+    class alpha12NotFound {
+        title = "Mission failed";
+        subtitle = "You did not recover Alpha 1-2 until dawn";
+        description = "";
+    };
+};
