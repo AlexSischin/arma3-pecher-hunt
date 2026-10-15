@@ -30,11 +30,12 @@ playerGroupUnits = units playerGroup;
     // Wait until Alpha 1-2 is found
     while {{_x distance alpha12heli < 20} count playerGroupUnits == 0} do {sleep 1};
 
-    playerGroupCommander sideChat "HQ, this is Alpha 1-1. We have located the Alpha 1-2 crash site. No survivors. I say again, no survivors. Do you copy?";
+    [playerGroupCommander, "HQ, this is Alpha 1-1. We have located the Alpha 1-2 crash site. No survivors. I say again, no survivors. Do you copy?"]
+        remoteExec ["commandChat", 0];
     ["findAlpha12", "SUCCEEDED", true] call BIS_fnc_taskSetState;
     sleep 10;
-    [west, "HQ"] sideChat "Copy, Alpha 1-1. Phase One is complete. Proceed to Phase Two. Locate and eliminate the unidentified biological. HQ out.";
-    sleep 10;
+    [[west, "HQ"], "Copy, Alpha 1-1. Phase One is complete. Proceed to Phase Two. Locate and eliminate the unidentified biological. HQ out."]
+        remoteExec ["commandChat", 0];
 
     // Main task
     [
@@ -62,13 +63,12 @@ playerGroupUnits = units playerGroup;
         while {{_x distance mrBeastBlood < 10} count playerGroupUnits == 0} do {sleep 1};
 
         ["killMrBeast", "SUCCEEDED", true] call BIS_fnc_taskSetState;
-        _closestUnits = [playerGroupUnits, [], {mrBeastBlood distance _x}, "ASCEND"] call BIS_fnc_sortBy;
-        _closestUnit = _closestUnits select 0;
-        _closestUnit groupChat "What the fuck?! This asshole just disappeared!";
+        [playerGroupCommander, "This is Alpha 1-1. The unidentified biological has been eliminated. " +
+            "Repeat, the target is eliminated. The corpse disintegrated; only blood remains. How copy?"]
+            remoteExec ["commandChat", 0];
         sleep 5;
-        playerGroupCommander sideChat "This is Alpha 1-1. The unidentified biological has been eliminated. " +
-            "Repeat, the targed is eliminated. The corpse disintegrated immediately afterwards, only blood has left. " +
-            "This is a headache for scientists and other eggheads. Alpha 1-1 is proceeding to the extraction point.";
+        [[west, "HQ"], "Copy, Alpha 1-1. Phase Two is complete. Proceed to exfiltration. HQ out."]
+            remoteExec ["commandChat", 0];
         [
             playerGroup,
             "moveToExtractionPoint",
@@ -85,7 +85,8 @@ playerGroupUnits = units playerGroup;
         while {({_x inArea "base_zone"} count playerGroupUnits) != ({alive _x} count playerGroupUnits)} do {sleep 1};
 
         ["moveToExtractionPoint", "SUCCEEDED", true] call BIS_fnc_taskSetState;
-        playerGroupCommander sideChat "Reporting: mission completed.";
+        [playerGroupCommander, "Folks, we fucking did it!"]
+            remoteExec ["groupChat", 0];
         ["success", true, true] remoteExec ["BIS_fnc_endMission", 0, true];
     };
 
@@ -109,14 +110,17 @@ playerGroupUnits = units playerGroup;
         _closestUnits = [playerGroupUnits, [], {nuke distance _x}, "ASCEND"] call BIS_fnc_sortBy;
         _closestUnit = _closestUnits select 0;
         if (fuel nuke > 0) then {
-            _closestUnit groupChat "I recovered the nuke carrier";
+            [_closestUnit, "I recovered the nuke carrier"]
+                remoteExec ["groupChat", 0];
         } else {
-            _closestUnit groupChat "I checked the nuke carrier. It is empty and has no fuel.";
+            [_closestUnit, "I checked the nuke carrier. It is empty and has no fuel."]
+                remoteExec ["groupChat", 0];
             // Wait until the nuke is fueled.
             while {fuel nuke < 0.01} do {sleep 1};
         };
         sleep 3;
-        playerGroupCommander sideChat "This is Alpha 1-1. We recovered the tactical nuke launch vehicle.";
+        [playerGroupCommander, "This is Alpha 1-1. We recovered the tactical nuke launch vehicle."]
+            remoteExec ["commandChat", 0];
         sleep 1;
         ["recoverNuke", "SUCCEEDED", true] call BIS_fnc_taskSetState;
     };
@@ -142,8 +146,10 @@ playerGroupUnits = units playerGroup;
         ["lootAmmoBox", "SUCCEEDED", true] call BIS_fnc_taskSetState;
         _closestUnits = [playerGroupUnits, [], {ammoBox distance _x}, "ASCEND"] call BIS_fnc_sortBy;
         _closestUnit = _closestUnits select 0;
-        _closestUnit groupChat "I found the Russian ammunition.";
+        [_closestUnit, "I found the Russian ammunition."]
+            remoteExec ["groupChat", 0];
         sleep 5;
-        playerGroupCommander sideChat "This is Alpha 1-1. We've recovered the Russian ammunition.";
+        [playerGroupCommander, "This is Alpha 1-1. We've recovered the Russian ammunition."]
+            remoteExec ["commandChat", 0];
     };
 };
