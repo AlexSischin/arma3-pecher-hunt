@@ -4,6 +4,8 @@
 
 This is a 2-4 players coop scenario for Arma 3.
 
+[Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3818649097).
+
 ## Plot
 
 Alpha 1-1 is sent to Pecher to locate and rescue the missing Alpha 1-2 crew
@@ -26,19 +28,9 @@ Stay alive, stay alert, and use your head.
 Caution, cunning, and quick reflexes will be your greatest assets.
 Good luck out there. You'll need it.
 
-## Disclaimer & limitations
+## Limitations & recommendations
 
-For optimization purposes, most units and vehicles in this scenario are tracked virtually
-and only rendered when they are within a certain distance. While this helps improve performance,
-it also comes with a few drawbacks:
-
-- Nuclear strikes will usually kill only the main boss, as it is always rendered regardless of distance.
-- You may occasionally notice weaker zombies spawning 100–200 meters away as they become visible.
-- FPS may drop in Pecher as large numbers of zombies become visible simultaneously. Unfortunately, the Arma 3 engine struggles to handle large crowds.
-
-## Requirements & recommendations
-
-### Skills
+### ACE
 
 You need at least one team member familiar with ACE controls to be able to:
 
@@ -55,7 +47,30 @@ And you might also want to:
 - tow vehicles;
 - etc.
 
-## Mods:
+### Game object virtualization
+
+For optimization purposes, most units and vehicles in this scenario are tracked virtually
+and only rendered when they are within a certain distance. While this helps improve performance,
+it also comes with a few drawbacks:
+
+- Nuclear strikes will usually kill only the main boss, as it is always rendered regardless of distance.
+- You may occasionally notice weaker zombies spawning 100–200 meters away as they become visible.
+- FPS may drop in Pecher as large numbers of zombies become visible simultaneously. Unfortunately, the Arma 3 engine struggles to handle large crowds.
+
+### Dedicated server
+
+Run this scenario on a dedicated server if possible. Doing this may significantly improve FPS for the host
+and clients.
+
+This repo has [start-server.ps1](start-server.ps1), which is a PowerShell script that starts the server.
+Use it as an example, but you will need to adjust the parameters. And also add `pecher_massacre.carter_winter.pbo`
+to the `.../Arma 3/MPMissions` directory.
+
+### Headless clients are not supported
+
+This scenario does not allow headless clients.
+
+## Required mods
 
 - [ace](https://steamcommunity.com/sharedfiles/filedetails/?id=463939057)
 - [CBA_A3](https://steamcommunity.com/sharedfiles/filedetails/?id=450814997)
